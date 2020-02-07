@@ -1,1 +1,2 @@
-export FolderBrowser from './lib/FolderBrowser';
+import FolderBrowser from './lib/FolderBrowser';
+export default FolderBrowser;
