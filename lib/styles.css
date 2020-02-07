@@ -1,0 +1,71 @@
+/* HELPERS */
+.folder-browser-nowrap {
+  white-space: nowrap !important;
+}
+
+/* MAIN */
+#folder-browser,
+#folder-browser *,
+#folder-browser *:before,
+#folder-browser *:after {
+  box-sizing: border-box;
+}
+
+#folder-browser {
+  background-color: #fff;
+  border: 1px solid #fefefe;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+  color: #333;
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+/* HEADER */
+#folder-browser-header {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+#folder-browser-title {
+  font-size: 1.2em;
+}
+
+#folder-browser-buttons {
+  margin: -5px -5px 0 auto;
+}
+
+.folder-browser-button {
+  background: #eee;
+  border: 1px solid #ddd;
+  box-shadow: none;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: inherit;
+  letter-spacing: 0;
+  line-height: inherit;
+  margin: 0 0 0 2px;
+  padding: 4px 10px;
+}
+
+.folder-browser-button:hover {
+  background-color: #ddd;
+  border-color: #ccc;
+}
+
+/* BODY */
+#folder-browser-body {
+  /*box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);*/
+  display: flex;
+  min-height: 1px;
+  overflow: hidden;
+  overflow-x: auto;
+}
+
+/* ITEMS */
+.folder-browser-item-focused {
+  background-color: rgba(0, 0, 0, .05);
+}

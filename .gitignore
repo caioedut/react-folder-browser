@@ -12,10 +12,6 @@
 .idea
 .vscode
 
-# production
-/build
-/lib
-
 # misc
 .DS_Store
 .env.local
