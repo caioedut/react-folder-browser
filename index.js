@@ -1,1 +1,1 @@
-module.exports = require('./src/FolderBrowser');
+module.exports = require('./lib/FolderBrowser');
