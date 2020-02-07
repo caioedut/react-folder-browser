@@ -1,2 +1,1 @@
-import FolderBrowser from './lib/FolderBrowser';
-export default FolderBrowser;
+module.exports = require('./src/FolderBrowser');
