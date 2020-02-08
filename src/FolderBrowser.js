@@ -11,6 +11,7 @@ export const defaultProps = {
   columnSize: 'Size',
   columnPreview: '',
   columnActions: '',
+  ignoreDuplicated: true,
   buttonRefresh: {
     title: 'Refresh',
   },
@@ -41,8 +42,8 @@ function formatBytes(bytes, decimals = 2) {
   return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
-const FolderBrowser = (props) => {
-  const [files, setFiles] = useState();
+export default function FolderBrowser(props) {
+  const [files, setFiles] = useState(null);
 
   useEffect(() => setFiles(props.files), [props.files]);
 
@@ -59,6 +60,14 @@ const FolderBrowser = (props) => {
 
     $el.classList.add('folder-browser-item-focused');
   }
+
+  // Filter duplicated
+  const data = files && (
+    !props.ignoreDuplicated ? files : files.filter((a, i) => {
+      const exists = files.find((b) => a.name === b.name);
+      return files.lastIndexOf(exists) === i;
+    })
+  );
 
   return (
     <div id="folder-browser">
@@ -95,9 +104,9 @@ const FolderBrowser = (props) => {
       </div>
       <div id="folder-browser-body">
 
-        {!files ? (
+        {!data ? (
           <div style={{padding: '0 15px 15px'}}>{props.loading}</div>
-        ) : !files.length ? (
+        ) : !data.length ? (
           <div style={{padding: '0 15px 15px'}}>{props.empty}</div>
         ) : (
           <table>
@@ -112,7 +121,7 @@ const FolderBrowser = (props) => {
             </thead>
             <tbody>
 
-            {files.map((file, i) => (
+            {data.map((file, i) => (
               <tr key={i} onClick={(e) => _handleFocus(e, file)}>
                 <td>
                   {[
@@ -186,5 +195,3 @@ const FolderBrowser = (props) => {
 };
 
 FolderBrowser.defaultProps = defaultProps;
-
-export default FolderBrowser;
