@@ -121,7 +121,7 @@ const FolderBrowser = (props) => {
                       width: 38,
                     }}>
                       <img
-                        src={file.path}
+                        src={file.url}
                         alt={file.name}
                         style={{
                           objectFit: 'cover',
@@ -133,11 +133,11 @@ const FolderBrowser = (props) => {
                   )}
                 </td>
                 <td style={{width: '100%'}}>
-                  <a href={file.path} target={'_blank'}>
+                  <a href={file.url} target={'_blank'}>
                     {file.name}
                   </a>
                 </td>
-                <td>
+                <td className="folder-browser-nowrap">
                   {file.loading && (
                     <b>Enviando...</b>
                   )}
@@ -155,7 +155,7 @@ const FolderBrowser = (props) => {
                     className="folder-browser-button"
                     children={buttonDownload.title}
                     {...buttonDownload}
-                    href={file.path}
+                    href={file.url}
                   />
                   <button
                     className="folder-browser-button"
