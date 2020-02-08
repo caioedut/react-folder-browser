@@ -6,6 +6,7 @@ export const defaultProps = {
   title: 'Files',
   loading: 'Loading...',
   empty: 'No files.',
+  exists: 'File already exists. Continue?',
   columnName: 'Name',
   columnSize: 'Size',
   columnPreview: '',
@@ -79,7 +80,13 @@ const FolderBrowser = (props) => {
               name="file"
               hidden
               onChange={(e) => {
-                buttonUpload.onChange(e, e.target.files);
+                const files = e.target.files;
+                const exists = Array.from(files).find(({name}) => name === files[0].name);
+
+                if (!exists || window.confirm(props.exists)) {
+                  buttonUpload.onChange(e, e.target.files);
+                }
+
                 e.target.value = null;
               }}
             />
