@@ -7,6 +7,7 @@ export const defaultProps = {
   loading: 'Loading...',
   empty: 'No files.',
   exists: 'File already exists. Continue?',
+  delete: 'Do you want to remove the file?',
   columnName: 'Name',
   columnSize: 'Size',
   columnPreview: '',
@@ -90,7 +91,7 @@ export default function FolderBrowser(props) {
               hidden
               onChange={(e) => {
                 const files = e.target.files;
-                const exists = Array.from(files).find(({name}) => name === files[0].name);
+                const exists = data.find(({name}) => name === files[0].name);
 
                 if (!exists || window.confirm(props.exists)) {
                   buttonUpload.onChange(e, e.target.files);
@@ -178,7 +179,11 @@ export default function FolderBrowser(props) {
                     type="button"
                     children={buttonDelete.title}
                     {...buttonDelete}
-                    onClick={(e) => buttonDelete.onClick(e, file)}
+                    onClick={(e) => {
+                      if (window.confirm(props.delete)) {
+                        buttonDelete.onClick(e, file);
+                      }
+                    }}
                   />
                 </td>
               </tr>
