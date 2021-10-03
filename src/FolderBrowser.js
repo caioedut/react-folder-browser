@@ -6,6 +6,11 @@ import PropTypes from 'prop-types';
 import FileDrop from 'react-file-drop';
 
 export const propTypes = {
+  files: PropTypes.shape({
+    name: PropTypes.string,
+    url: PropTypes.string,
+    size: PropTypes.number,
+  }),
   title: PropTypes.node,
   loading: PropTypes.node,
   deleting: PropTypes.node,
@@ -62,6 +67,7 @@ export const propTypes = {
 };
 
 export const defaultProps = {
+  files: [],
   title: 'Files',
   loading: 'Loading...',
   deleting: 'Deleting...',
@@ -95,6 +101,10 @@ export const defaultProps = {
 function formatBytes(bytes, decimals = 2) {
   if (bytes === 0) {
     return '0 Bytes';
+  }
+
+  if (!bytes) {
+    return '-'
   }
 
   const k = 1024;

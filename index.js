@@ -1,1 +1,2 @@
-module.exports = require('./lib/FolderBrowser');
+const FolderBrowser = require('./lib/FolderBrowser');
+module.exports = FolderBrowser;
